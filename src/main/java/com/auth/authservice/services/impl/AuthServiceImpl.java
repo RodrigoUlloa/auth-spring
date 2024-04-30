@@ -29,6 +29,12 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new RuntimeException("Error creating user"));
     }
 
+    @Override
+    public TokenResponse loginUser(UserRequest userRequest) {
+        return Optional.of(userRequest)
+                .map();
+    }
+
     private UserModel mapToEntity(UserRequest userRequest) {
         return UserModel.builder()
                 .email(userRequest.getEmail())

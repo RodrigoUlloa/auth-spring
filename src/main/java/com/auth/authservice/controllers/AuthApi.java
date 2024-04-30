@@ -14,4 +14,7 @@ public interface AuthApi {
 
     @GetMapping
     ResponseEntity<String> getUser(@RequestAttribute(name = "X-User-Id") String userId);
+
+    @PostMapping(value = "/login")
+    ResponseEntity<TokenResponse> loginUser(@RequestBody @Valid UserRequest userRequest);
 }
