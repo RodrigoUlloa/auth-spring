@@ -33,7 +33,10 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenResponse loginUser(UserRequest userRequest) {
         return Optional.of(userRequest)
-                .filter(userRequest -> userRepository.existsByEmail)
+                .filter(userRequest -> userRepository.existsByEmailAndPassword(email, password))
+                .map(userRequest -> userRepository.findByEmail(email))
+                .map(userLoged -> jwtService.generateToken(userLoged.getId()))
+                .orElseThrow(() -> new RuntimeException("Error login user") )
                 ;
     }
 
