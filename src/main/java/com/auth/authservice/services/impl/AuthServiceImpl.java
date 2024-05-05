@@ -8,6 +8,7 @@ import com.auth.authservice.services.AuthService;
 import com.auth.authservice.services.JwtService;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -32,7 +33,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenResponse loginUser(UserRequest userRequest) {
         return Optional.of(userRequest)
-                .map();
+                .filter(userRequest -> userRepository.existsByEmail)
+                ;
     }
 
     private UserModel mapToEntity(UserRequest userRequest) {
